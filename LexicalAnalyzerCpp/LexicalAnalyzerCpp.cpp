@@ -12,7 +12,7 @@ const string CAP_LETTERS = "_ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 const string DIGITS = "0123456789";
 const string LETTERS_DIGITS = "_ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 const string SINGLE_OPERATORS = "{}[]#()?.+-*/%^&|~!=<>";
-const string DOUBLE_OPERATORS = "## <: ";
+const string DOUBLE_OPERATORS = "## <:";
 
 // Function prototypes
 void parse(const string& fileName);
@@ -45,8 +45,28 @@ void parse(const string& fileName)
 
 vector<string> parseIdentifier(const string& input)
 {
+	enum states { STATE_NOTHING, STATE_FIRST, STATE_SUCCEEDING, STATE_DONE };
+	states currentState = STATE_NOTHING;
+
+	const size_t inputSize(input.length());
+	size_t elementNum(0);
+
 	vector <string> tokens;
 
+	while (elementNum < inputSize)
+	{
+		const char curChar(input[elementNum++]);
+
+		switch (curChar)
+		{
+		case STATE_NOTHING:
+
+			break;
+		}
+	}
+
+
+	
 	
 
 	return tokens;
