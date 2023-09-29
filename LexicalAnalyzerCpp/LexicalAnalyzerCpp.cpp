@@ -43,25 +43,45 @@ void parse(const string& fileName)
 
 }
 
+
 vector<string> parseIdentifier(const string& input)
 {
-	enum states { STATE_NOTHING, STATE_FIRST, STATE_SUCCEEDING, STATE_DONE };
+	enum states { STATE_NOTHING, STATE_FIRST, STATE_SUCCEEDING, STATE_DONE, STATE_COMMENT };
 	states currentState = STATE_NOTHING;
 
 	const size_t inputSize(input.length());
 	size_t elementNum(0);
 
+    string identifier = "";
 	vector <string> tokens;
+
+    int letterPosition(-1);
 
 	while (elementNum < inputSize)
 	{
 		const char curChar(input[elementNum++]);
+        // next char = input[elementNum]
+        // 3rd char =  input[elementNum+1]
 
-		switch (curChar)
+		switch (currentState)
 		{
-		case STATE_NOTHING:
+		    case STATE_NOTHING:
+                if (curChar != ' ')
+                {
+                    currentState = STATE_FIRST;
+                    identifier = curChar;
+                }
+			    break;
 
-			break;
+            case STATE_FIRST:
+                //test to see if it is a word or number
+                letterPosition = LETTERS_DIGITS.find(toupper(curChar));
+
+
+            case STATE_DONE:
+                break;
+
+
 		}
 	}
 
